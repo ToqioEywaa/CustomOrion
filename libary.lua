@@ -448,11 +448,11 @@ function Library:MakeWindow(WindowConfig)
 		WindowConfig.IntroEnabled = true
 	end
 	WindowConfig.IntroToggleIcon = WindowConfig.IntroToggleIcon or "rbxassetid://8834748103"
-	WindowConfig.IntroText = WindowConfig.IntroText or "Starting Clean UI Library"
+	WindowConfig.IntroText = WindowConfig.IntroText or "BaddieHub"
 	WindowConfig.CloseCallback = WindowConfig.CloseCallback or function() end
 	WindowConfig.ShowIcon = WindowConfig.ShowIcon or false
 	WindowConfig.Icon = WindowConfig.Icon or "rbxassetid://8834748103"
-	WindowConfig.IntroIcon = WindowConfig.IntroIcon or "rbxassetid://8834748103"
+	WindowConfig.IntroIcon = WindowConfig.IntroIcon or "rbxassetid://118085384603112"
 	Library.Folder = WindowConfig.ConfigFolder
 	Library.SaveCfg = WindowConfig.SaveConfig
 
