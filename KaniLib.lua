@@ -699,76 +699,82 @@ function Library:MakeWindow(WindowConfig)
 		}
 		local currentMessageIndex = 1
 		
-		local LoadSequenceLogo = SetProps(MakeElement("Image", WindowConfig.IntroIcon), {
+		-- Container for intro elements
+		local IntroContainer = SetProps(MakeElement("TFrame"), {
 			Parent = Container,
+			Size = UDim2.new(1, 0, 1, 0),
+			BackgroundTransparency = 1
+		})
+		
+		local LoadSequenceLogo = SetProps(MakeElement("Image", WindowConfig.IntroIcon), {
+			Parent = IntroContainer,
 			AnchorPoint = Vector2.new(0.5, 0.5),
-			Position = UDim2.new(0.5, 0, 0.4, 0),
+			Position = UDim2.new(0.5, 0, 0.5, 0),
 			Size = UDim2.new(0, 28, 0, 28),
 			ImageColor3 = Color3.fromRGB(255, 255, 255),
 			ImageTransparency = 1
 		})
 
 		local LoadSequenceText = SetProps(MakeElement("Label", introMessages[1], 14), {
-			Parent = Container,
-			Size = UDim2.new(1, 0, 1, 0),
-			AnchorPoint = Vector2.new(0.5, 0.5),
-			Position = UDim2.new(0.5, 19, 0.5, 0),
-			TextXAlignment = Enum.TextXAlignment.Center,
-			Font = Enum.Font.GothamBold,
-			TextTransparency = 1
-		})
-		
-		-- Loading dots animation
-		local LoadingDots = SetProps(MakeElement("Label", "", 14), {
-			Parent = Container,
-			Size = UDim2.new(1, 0, 1, 0),
-			AnchorPoint = Vector2.new(0.5, 0.5),
-			Position = UDim2.new(0.5, 19, 0.55, 0),
-			TextXAlignment = Enum.TextXAlignment.Center,
+			Parent = IntroContainer,
+			Size = UDim2.new(0, 0, 0, 20),
+			AnchorPoint = Vector2.new(0, 0.5),
+			Position = UDim2.new(0.5, 0, 0.5, 0),
+			TextXAlignment = Enum.TextXAlignment.Left,
 			Font = Enum.Font.GothamBold,
 			TextTransparency = 1,
-			TextColor3 = Color3.fromRGB(200, 200, 200)
+			AutomaticSize = Enum.AutomaticSize.X
 		})
 
 		-- Animate logo appearance
-		TweenService:Create(LoadSequenceLogo, TweenInfo.new(.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {ImageTransparency = 0, Position = UDim2.new(0.5, 0, 0.5, 0)}):Play()
+		TweenService:Create(LoadSequenceLogo, TweenInfo.new(.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {ImageTransparency = 0}):Play()
 		wait(0.8)
 		
-		-- Move logo to make space for text
-		TweenService:Create(LoadSequenceLogo, TweenInfo.new(.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {Position = UDim2.new(0.5, -(LoadSequenceText.TextBounds.X/2), 0.5, 0)}):Play()
-		wait(0.3)
-		
-		-- Show initial text and dots
+		-- Show text and adjust positions
 		TweenService:Create(LoadSequenceText, TweenInfo.new(.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {TextTransparency = 0}):Play()
-		TweenService:Create(LoadingDots, TweenInfo.new(.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {TextTransparency = 0}):Play()
+		wait(0.1)
 		
-		-- Animate loading dots
-		spawn(function()
-			local dotCount = 0
-			while LoadingDots and LoadingDots.Parent do
-				dotCount = (dotCount % 3) + 1
-				LoadingDots.Text = string.rep(".", dotCount)
-				wait(0.5)
-			end
-		end)
+		-- Function to update positions based on text width
+		local function UpdatePositions()
+			local textWidth = LoadSequenceText.TextBounds.X
+			local logoSize = 28
+			local spacing = 10
+			local totalWidth = logoSize + spacing + textWidth
+			
+			-- Center the combined logo + text
+			LoadSequenceLogo.Position = UDim2.new(0.5, -totalWidth/2, 0.5, 0)
+			LoadSequenceText.Position = UDim2.new(0.5, -totalWidth/2 + logoSize + spacing, 0.5, 0)
+		end
+		
+		-- Initial position update
+		wait(0.1) -- Small delay to ensure TextBounds is calculated
+		UpdatePositions()
 		
 		-- Cycle through intro messages
 		for i = 1, #introMessages do
 			if i > 1 then
 				-- Roll up animation - move current text up and fade out
 				TweenService:Create(LoadSequenceText, TweenInfo.new(.2, Enum.EasingStyle.Quad, Enum.EasingDirection.In), {
-					Position = UDim2.new(0.5, 19, 0.45, 0),
+					Position = UDim2.new(LoadSequenceText.Position.X.Scale, LoadSequenceText.Position.X.Offset, 0.45, 0),
 					TextTransparency = 1
 				}):Play()
 				wait(0.2)
 				
-				-- Update text and reset position
+				-- Update text
 				LoadSequenceText.Text = introMessages[i]
-				LoadSequenceText.Position = UDim2.new(0.5, 19, 0.55, 0)
+				
+				-- Wait for text bounds to update
+				wait(0.05)
+				
+				-- Update positions for new text
+				UpdatePositions()
+				
+				-- Reset text position for roll down animation
+				LoadSequenceText.Position = UDim2.new(LoadSequenceText.Position.X.Scale, LoadSequenceText.Position.X.Offset, 0.55, 0)
 				
 				-- Roll down animation - move new text into position and fade in
 				TweenService:Create(LoadSequenceText, TweenInfo.new(.2, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {
-					Position = UDim2.new(0.5, 19, 0.5, 0),
+					Position = UDim2.new(LoadSequenceText.Position.X.Scale, LoadSequenceText.Position.X.Offset, 0.5, 0),
 					TextTransparency = 0
 				}):Play()
 			end
@@ -783,17 +789,14 @@ function Library:MakeWindow(WindowConfig)
 		
 		-- Final fade out
 		TweenService:Create(LoadSequenceText, TweenInfo.new(.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {TextTransparency = 1}):Play()
-		TweenService:Create(LoadingDots, TweenInfo.new(.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {TextTransparency = 1}):Play()
 		TweenService:Create(LoadSequenceLogo, TweenInfo.new(.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {ImageTransparency = 1}):Play()
 		wait(0.3)
 		
 		-- Show main window
 		MainWindow.Visible = true
 		
-		-- Clean up intro elements
-		LoadSequenceLogo:Destroy()
-		LoadSequenceText:Destroy()
-		LoadingDots:Destroy()
+		-- Clean up intro container
+		IntroContainer:Destroy()
 	end 
 
 	if WindowConfig.IntroEnabled then
