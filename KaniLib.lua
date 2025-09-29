@@ -806,7 +806,7 @@ end)
 	local function GetElements(ItemParent)
 		local ElementFunction = {}
 		function ElementFunction:AddLabel(Text)
-			local LabelFrame = AddThemeObject(SetChildren(SetProps(MakeElement("RoundFrame", Color3.fromRGB(255, 255, 255), 0, 5), {
+			local LabelFrame = AddThemeObject(SetChildren(SetProps(MakeElement("RoundFrame", Color3.fromRGB(255, 255, 255), 0, 8), {
 				Size = UDim2.new(1, 0, 0, 30),
 				BackgroundTransparency = 0.8,
 				Parent = ItemParent
@@ -830,7 +830,7 @@ end)
 			Text = Text or "Text"
 			Content = Content or "Content"
 
-			local ParagraphFrame = AddThemeObject(SetChildren(SetProps(MakeElement("RoundFrame", Color3.fromRGB(255, 255, 255), 0, 5), {
+			local ParagraphFrame = AddThemeObject(SetChildren(SetProps(MakeElement("RoundFrame", Color3.fromRGB(255, 255, 255), 0, 8), {
 				Size = UDim2.new(1, 0, 0, 30),
 				BackgroundTransparency = 0.8,
 				Parent = ItemParent
@@ -876,7 +876,8 @@ end)
 				Size = UDim2.new(1, 0, 1, 0)
 			})
 
-			local ButtonFrame = AddThemeObject(SetChildren(SetProps(MakeElement("RoundFrame", Color3.fromRGB(255, 255, 255), 0, 5), {
+			-- Added rounded corners to button frame
+			local ButtonFrame = AddThemeObject(SetChildren(SetProps(MakeElement("RoundFrame", Color3.fromRGB(255, 255, 255), 0, 8), {
 				Size = UDim2.new(1, 0, 0, 33),
 				Parent = ItemParent,
 				BackgroundTransparency = 0.25
@@ -935,7 +936,8 @@ end)
 				Size = UDim2.new(1, 0, 1, 0)
 			})
 
-			local ToggleBox = SetChildren(SetProps(MakeElement("RoundFrame", ToggleConfig.Color, 0, 4), {
+			-- Added rounded corners to toggle box
+			local ToggleBox = SetChildren(SetProps(MakeElement("RoundFrame", ToggleConfig.Color, 0, 6), {
 				Size = UDim2.new(0, 24, 0, 24),
 				Position = UDim2.new(1, -24, 0.5, 0),
 				AnchorPoint = Vector2.new(0.5, 0.5),
@@ -955,7 +957,8 @@ end)
 				}),
 			})
 
-			local ToggleFrame = AddThemeObject(SetChildren(SetProps(MakeElement("RoundFrame", Color3.fromRGB(255, 255, 255), 0, 5), {
+			-- Added rounded corners to toggle frame
+			local ToggleFrame = AddThemeObject(SetChildren(SetProps(MakeElement("RoundFrame", Color3.fromRGB(255, 255, 255), 0, 8), {
 				Size = UDim2.new(1, 0, 0, 38),
 				Parent = ItemParent,
 				BackgroundTransparency = 0.25
@@ -1020,7 +1023,8 @@ end)
 			local Slider = {Value = SliderConfig.Default, Save = SliderConfig.Save}
 			local Dragging = false
 
-			local SliderDrag = SetChildren(SetProps(MakeElement("RoundFrame", SliderConfig.Color, 0, 5), {
+			-- Added rounded corners to slider drag area
+			local SliderDrag = SetChildren(SetProps(MakeElement("RoundFrame", SliderConfig.Color, 0, 6), {
 				Size = UDim2.new(0, 0, 1, 0),
 				BackgroundTransparency = 0.4,
 				ClipsDescendants = true
@@ -1034,7 +1038,8 @@ end)
 				}), "Text")
 			})
 
-			local SliderBar = SetChildren(SetProps(MakeElement("RoundFrame", SliderConfig.Color, 0, 5), {
+			-- Added rounded corners to slider bar
+			local SliderBar = SetChildren(SetProps(MakeElement("RoundFrame", SliderConfig.Color, 0, 6), {
 				Size = UDim2.new(1, -24, 0, 26),
 				Position = UDim2.new(0, 12, 0, 30),
 				BackgroundTransparency = 0.9
@@ -1053,7 +1058,8 @@ end)
 				SliderDrag
 			})
 
-			local SliderFrame = AddThemeObject(SetChildren(SetProps(MakeElement("RoundFrame", Color3.fromRGB(255, 255, 255), 0, 4), {
+			-- Added rounded corners to slider frame
+			local SliderFrame = AddThemeObject(SetChildren(SetProps(MakeElement("RoundFrame", Color3.fromRGB(255, 255, 255), 0, 8), {
 				Size = UDim2.new(1, 0, 0, 65),
 				Parent = ItemParent,
 				BackgroundTransparency = 0.25
@@ -1132,7 +1138,8 @@ end)
 				Size = UDim2.new(1, 0, 1, 0)
 			})
 
-			local DropdownFrame = AddThemeObject(SetChildren(SetProps(MakeElement("RoundFrame", Color3.fromRGB(255, 255, 255), 0, 5), {
+			-- Added rounded corners to dropdown frame
+			local DropdownFrame = AddThemeObject(SetChildren(SetProps(MakeElement("RoundFrame", Color3.fromRGB(255, 255, 255), 0, 8), {
 				Size = UDim2.new(1, 0, 0, 38),
 				Parent = ItemParent,
 				ClipsDescendants = true,
@@ -1182,6 +1189,7 @@ end)
 
 			local function AddOptions(Options)
 				for _, Option in pairs(Options) do
+					-- Added rounded corners to dropdown option buttons
 					local OptionBtn = AddThemeObject(SetProps(SetChildren(MakeElement("Button", Color3.fromRGB(40, 40, 40)), {
 						MakeElement("Corner", 0, 6),
 						AddThemeObject(SetProps(MakeElement("Label", Option, 13, 0.4), {
@@ -1273,7 +1281,8 @@ end)
 				Size = UDim2.new(1, 0, 1, 0)
 			})
 
-			local BindBox = AddThemeObject(SetChildren(SetProps(MakeElement("RoundFrame", Color3.fromRGB(255, 255, 255), 0, 4), {
+			-- Added rounded corners to bind box
+			local BindBox = AddThemeObject(SetChildren(SetProps(MakeElement("RoundFrame", Color3.fromRGB(255, 255, 255), 0, 6), {
 				Size = UDim2.new(0, 24, 0, 24),
 				Position = UDim2.new(1, -12, 0.5, 0),
 				AnchorPoint = Vector2.new(1, 0.5),
@@ -1288,7 +1297,8 @@ end)
 				}), "Text")
 			}), "Main")
 
-			local BindFrame = AddThemeObject(SetChildren(SetProps(MakeElement("RoundFrame", Color3.fromRGB(255, 255, 255), 0, 5), {
+			-- Added rounded corners to bind frame
+			local BindFrame = AddThemeObject(SetChildren(SetProps(MakeElement("RoundFrame", Color3.fromRGB(255, 255, 255), 0, 8), {
 				Size = UDim2.new(1, 0, 0, 38),
 				Parent = ItemParent,
 				BackgroundTransparency = 0.25
@@ -1404,7 +1414,8 @@ end)
 				ClearTextOnFocus = false
 			}), "Text")
 
-			local TextContainer = AddThemeObject(SetChildren(SetProps(MakeElement("RoundFrame", Color3.fromRGB(255, 255, 255), 0, 4), {
+			-- Added rounded corners to text container
+			local TextContainer = AddThemeObject(SetChildren(SetProps(MakeElement("RoundFrame", Color3.fromRGB(255, 255, 255), 0, 6), {
 				Size = UDim2.new(0, 24, 0, 24),
 				Position = UDim2.new(1, -12, 0.5, 0),
 				AnchorPoint = Vector2.new(1, 0.5),
@@ -1414,8 +1425,8 @@ end)
 				TextboxActual
 			}), "Main")
 
-
-			local TextboxFrame = AddThemeObject(SetChildren(SetProps(MakeElement("RoundFrame", Color3.fromRGB(255, 255, 255), 0, 5), {
+			-- Added rounded corners to textbox frame
+			local TextboxFrame = AddThemeObject(SetChildren(SetProps(MakeElement("RoundFrame", Color3.fromRGB(255, 255, 255), 0, 8), {
 				Size = UDim2.new(1, 0, 0, 38),
 				Parent = ItemParent,
 				BackgroundTransparency = 0.25
@@ -1529,7 +1540,8 @@ end)
 				Size = UDim2.new(1, 0, 1, 0)
 			})
 
-			local ColorpickerBox = AddThemeObject(SetChildren(SetProps(MakeElement("RoundFrame", Color3.fromRGB(255, 255, 255), 0, 4), {
+			-- Added rounded corners to colorpicker box
+			local ColorpickerBox = AddThemeObject(SetChildren(SetProps(MakeElement("RoundFrame", Color3.fromRGB(255, 255, 255), 0, 6), {
 				Size = UDim2.new(0, 24, 0, 24),
 				Position = UDim2.new(1, -12, 0.5, 0),
 				AnchorPoint = Vector2.new(1, 0.5),
@@ -1538,7 +1550,8 @@ end)
 				AddThemeObject(MakeElement("Stroke"), "Stroke")
 			}), "Main")
 
-			local ColorpickerFrame = AddThemeObject(SetChildren(SetProps(MakeElement("RoundFrame", Color3.fromRGB(255, 255, 255), 0, 5), {
+			-- Added rounded corners to colorpicker frame
+			local ColorpickerFrame = AddThemeObject(SetChildren(SetProps(MakeElement("RoundFrame", Color3.fromRGB(255, 255, 255), 0, 8), {
 				Size = UDim2.new(1, 0, 0, 38),
 				Parent = ItemParent,
 				BackgroundTransparency = 0.25
@@ -1735,6 +1748,7 @@ end
 return TabFunction
 end
 
+
 local Configs_HUB = {
 Cor_Hub = Color3.fromRGB(15, 15, 15),
 Cor_Options = Color3.fromRGB(15, 15, 15),
@@ -1828,6 +1842,7 @@ AutomaticSize = "Y",
 Name = "Title"
 })
 
+-- Added rounded corners to notification frame
 local Frame2 = Create("Frame", Frame1, {
 Size = UDim2.new(0, Menu_Notifi.Size.X.Offset - 50, 0, 0),
 BackgroundColor3 = Configs_HUB.Cor_Hub,
@@ -1847,6 +1862,7 @@ TextXAlignment = "Left",
 TextColor3 = Configs_HUB.Cor_Text
 })
 
+-- Added rounded corners to close button
 local TextButton = Create("TextButton", Frame2, {
 Text = "X",
 Font = Configs_HUB.Text_Font,
@@ -1856,7 +1872,7 @@ TextColor3 = Color3.fromRGB(200, 200, 200),
 Position = UDim2.new(1, -5, 0, 5),
 AnchorPoint = Vector2.new(1, 0),
 Size = UDim2.new(0, 25, 0, 25)
-})
+})Corner(TextButton, {CornerRadius = UDim.new(0, 6)})
 
 local TextLabel = Create("TextLabel", Frame2, {
 Size = UDim2.new(1, -30, 0, 0),
@@ -1873,13 +1889,14 @@ AutomaticSize = Enum.AutomaticSize.Y,
 TextWrapped = true
 })
 
+-- Added rounded corners to progress frame
 local FrameSize = Create("Frame", Frame2, {
 Size = UDim2.new(1, 0, 0, 2),
 BackgroundColor3 = Configs_HUB.Cor_Stroke,
 Position = UDim2.new(0, 2, 0, 30),
 BorderSizePixel = 0,
 BackgroundTransparency = 0.3
-})Corner(FrameSize)Create("Frame", Frame2, {
+})Corner(FrameSize, {CornerRadius = UDim.new(0, 4)})Create("Frame", Frame2, {
 Size = UDim2.new(0, 0, 0, 5),
 Position = UDim2.new(0, 0, 1, 5),
 BackgroundTransparency = 1
