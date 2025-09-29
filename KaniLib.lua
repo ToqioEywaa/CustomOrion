@@ -600,13 +600,20 @@ local MainWindow = AddThemeObject(SetChildren(SetProps(MakeElement("RoundFrame",
 	}), {
 		WindowName,
 		WindowTopBarLine,
-		AddThemeObject(SetProps(MakeElement("RoundFrame", Color3.fromRGB(255, 255, 255), 0, 7), {
+		AddThemeObject(SetChildren(SetProps(MakeElement("RoundFrame", Color3.fromRGB(255, 255, 255), 0, 7), {
 			Size = UDim2.new(0, 70, 0, 30),
 			Position = UDim2.new(1, -90, 0, 10),
 			BackgroundTransparency = 0.25
+		}), {
+			AddThemeObject(MakeElement("Stroke"), "Stroke"),
+			AddThemeObject(SetProps(MakeElement("Frame"), {
+				Size = UDim2.new(0, 1, 1, 0),
+				Position = UDim2.new(0.5, 0, 0, 0),
+				BackgroundTransparency = 0.4
+			}), "Stroke"), 
+			CloseBtn,
+			MinimizeBtn
 		}), "Second"), 
-		CloseBtn,
-		MinimizeBtn
 	}),
 	DragPoint,
 	WindowStuff
@@ -634,7 +641,7 @@ local MobileReopenButton = SetChildren(SetProps(MakeElement("Button"), {
 	AddThemeObject(SetProps(MakeElement("Image", WindowConfig.IntroToggleIcon or "http://www.roblox.com/asset/?id=8834748103"), {
 		AnchorPoint = Vector2.new(0.5, 0.5),
 		Position = UDim2.new(0.5, 0, 0.5, 0),
-		Size = UDim2.new(0, 0.7, 0, 0.7),
+		Size = UDim2.new(0.7, 0, 0.7, 0),
 	}), "Text"),
 	MakeElement("Corner", 1)
 })
@@ -696,45 +703,23 @@ local function LoadSequence()
 		ImageTransparency = 1
 	})
 
-	-- Fixed intro text sequence with roll-up animation
-	local LoadSequenceText = SetProps(MakeElement("Label", "Setting Up", 14), {
+	local LoadSequenceText = SetProps(MakeElement("Label", WindowConfig.IntroText, 14), {
 		Parent = Container,
 		Size = UDim2.new(1, 0, 1, 0),
 		AnchorPoint = Vector2.new(0.5, 0.5),
-		Position = UDim2.new(0.5, 0, 0.6, 0),
+		Position = UDim2.new(0.5, 19, 0.5, 0),
 		TextXAlignment = Enum.TextXAlignment.Center,
 		Font = Enum.Font.GothamBold,
 		TextTransparency = 1
 	})
 
-	local textSequence = {"Setting Up", "Downloading", "Connect to KanistayServer", "Starting UI"}
-	
-	-- Logo fade in
-	TweenService:Create(LoadSequenceLogo, TweenInfo.new(.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {ImageTransparency = 0, Position = UDim2.new(0.5, 0, 0.4, 0)}):Play()
-	TweenService:Create(LoadSequenceText, TweenInfo.new(.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {TextTransparency = 0}):Play()
-	
-	-- Text sequence with roll-up animation every 1.5 seconds
-	for i, text in ipairs(textSequence) do
-		if i > 1 then
-			-- Roll up animation: move current text up and fade out
-			TweenService:Create(LoadSequenceText, TweenInfo.new(.2, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {Position = UDim2.new(0.5, 0, 0.5, 0), TextTransparency = 1}):Play()
-			wait(0.2)
-			
-			-- Set new text and position it below, then animate up
-			LoadSequenceText.Text = text
-			LoadSequenceText.Position = UDim2.new(0.5, 0, 0.7, 0)
-			TweenService:Create(LoadSequenceText, TweenInfo.new(.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {Position = UDim2.new(0.5, 0, 0.6, 0), TextTransparency = 0}):Play()
-		end
-		
-		if i < #textSequence then
-			wait(1.3) -- Wait 1.5 seconds total (0.2 for animation + 1.3 wait)
-		end
-	end
-	
-	wait(1.5) -- Final wait before showing main window
-	TweenService:Create(LoadSequenceText, TweenInfo.new(.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {TextTransparency = 1}):Play()
-	TweenService:Create(LoadSequenceLogo, TweenInfo.new(.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {ImageTransparency = 1}):Play()
+	TweenService:Create(LoadSequenceLogo, TweenInfo.new(.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {ImageTransparency = 0, Position = UDim2.new(0.5, 0, 0.5, 0)}):Play()
+	wait(0.8)
+	TweenService:Create(LoadSequenceLogo, TweenInfo.new(.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {Position = UDim2.new(0.5, -(LoadSequenceText.TextBounds.X/2), 0.5, 0)}):Play()
 	wait(0.3)
+	TweenService:Create(LoadSequenceText, TweenInfo.new(.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {TextTransparency = 0}):Play()
+	wait(2)
+	TweenService:Create(LoadSequenceText, TweenInfo.new(.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {TextTransparency = 1}):Play()
 	MainWindow.Visible = true
 	LoadSequenceLogo:Destroy()
 	LoadSequenceText:Destroy()
@@ -1402,7 +1387,7 @@ end)
 
 			Bind:Set(BindConfig.Default)
 			if BindConfig.Flag then				
-				Library.Flags[Bind.Flag] = Bind
+				Library.Flags[BindConfig.Flag] = Bind
 			end
 			return Bind
 		end  
@@ -1696,7 +1681,7 @@ end)
 			}), "TextDark"),
 			SetChildren(SetProps(MakeElement("TFrame"), {
 				AnchorPoint = Vector2.new(0, 0),
-				Size = UDim2.new(1, 0, 0, 0),
+				Size = UDim2.new(1, 0, 1, -24),
 				Position = UDim2.new(0, 0, 0, 23),
 				Name = "Holder"
 			}), {
