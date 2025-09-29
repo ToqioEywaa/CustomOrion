@@ -1589,7 +1589,7 @@ function Library:MakeWindow(WindowConfig)
 		-- Sound abspielen nach "Starting UI"
 local SoundService = game:GetService("SoundService")
 local startSound = Instance.new("Sound")
-startSound.SoundId = "rbxassetid://90370232072817"
+startSound.SoundId = "rbxassetid://106804504297292"
 startSound.Volume = 1
 startSound.Parent = SoundService
 startSound:Play()
