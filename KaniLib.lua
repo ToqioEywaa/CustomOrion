@@ -696,7 +696,7 @@ local function LoadSequence()
 		ImageTransparency = 1
 	})
 
-	-- Added text sequence with roll-up animation
+	-- Fixed intro text sequence with roll-up animation
 	local LoadSequenceText = SetProps(MakeElement("Label", "Setting Up", 14), {
 		Parent = Container,
 		Size = UDim2.new(1, 0, 1, 0),
@@ -739,6 +739,10 @@ local function LoadSequence()
 	LoadSequenceLogo:Destroy()
 	LoadSequenceText:Destroy()
 end 
+
+if WindowConfig.IntroEnabled then
+	LoadSequence()
+end	
 
 local TabFunction = {}
 function TabFunction:MakeTab(TabConfig)
