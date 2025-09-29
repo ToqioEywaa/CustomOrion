@@ -819,7 +819,7 @@ function Library:MakeWindow(WindowConfig)
 				-- Spiele Sound nach "Starting UI"
 				pcall(function()
 					local sound = Instance.new("Sound")
-					sound.SoundId = "rbxassetid://90370232072817"
+					sound.SoundId = "rbxassetid://8629827007"
 					sound.Volume = 0.5
 					sound.Parent = Container
 					sound:Play()
