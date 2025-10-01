@@ -1310,6 +1310,15 @@ function Library:MakeWindow(WindowConfig)
 
 	end)
 
+AddConnection(CloseBtn.MouseButton1Down, function()
+local SoundService = game:GetService("SoundService")
+local sound = Instance.new("Sound", SoundService)
+sound.SoundId = "rbxassetid://6895079853"
+sound.Volume = 1
+sound:Play()
+game:GetService("Debris"):AddItem(sound, 3)
+end)
+
 
 
 	AddConnection(UserInputService.InputBegan, function(Input)
@@ -1333,6 +1342,14 @@ function Library:MakeWindow(WindowConfig)
 		MobileReopenButton.Visible = false
 
 	end)
+AddConnection(MobileReopenButton.MouseButton1Down, function()
+local SoundService = game:GetService("SoundService")
+local sound = Instance.new("Sound", SoundService)
+sound.SoundId = "rbxassetid://6895079853"
+sound.Volume = 1
+sound:Play()
+game:GetService("Debris"):AddItem(sound, 3)
+end)
 
 
 
@@ -1373,6 +1390,14 @@ function Library:MakeWindow(WindowConfig)
 		Minimized = not Minimized   
 
 	end)
+AddConnection(MinimizeBtn.MouseButton1Down, function()
+local SoundService = game:GetService("SoundService")
+local sound = Instance.new("Sound", SoundService)
+sound.SoundId = "rbxassetid://6895079853"
+sound.Volume = 1
+sound:Play()
+game:GetService("Debris"):AddItem(sound, 3)
+end)
 
 
 
@@ -1760,6 +1785,14 @@ startSound:Play()
 			Container.Visible = true
 
 		end)
+AddConnection(TabFrame.MouseButton1Down, function()
+local SoundService = game:GetService("SoundService")
+local sound = Instance.new("Sound", SoundService)
+sound.SoundId = "rbxassetid://6895079853"
+sound.Volume = 1
+sound:Play()
+game:GetService("Debris"):AddItem(sound, 3)
+end)
 
 
 
@@ -1982,6 +2015,12 @@ startSound:Play()
 				AddConnection(Click.MouseButton1Down, function()
 
 					TweenService:Create(ButtonFrame, TweenInfo.new(0.25, Enum.EasingStyle.Quint, Enum.EasingDirection.Out), {BackgroundTransparency = 0.05}):Play()
+local SoundService = game:GetService("SoundService")
+local sound = Instance.new("Sound", SoundService)
+sound.SoundId = "rbxassetid://6895079853"
+sound.Volume = 1
+sound:Play()
+game:GetService("Debris"):AddItem(sound, 3)
 
 				end)
 
@@ -2156,6 +2195,12 @@ startSound:Play()
 				AddConnection(Click.MouseButton1Down, function()
 
 					TweenService:Create(ToggleFrame, TweenInfo.new(0.25, Enum.EasingStyle.Quint, Enum.EasingDirection.Out), {BackgroundTransparency = 0.05}):Play()
+local SoundService = game:GetService("SoundService")
+local sound = Instance.new("Sound", SoundService)
+sound.SoundId = "rbxassetid://6895079853"
+sound.Volume = 1
+sound:Play()
+game:GetService("Debris"):AddItem(sound, 3)
 
 				end)
 
@@ -2308,6 +2353,12 @@ startSound:Play()
 				SliderBar.InputBegan:Connect(function(Input)
 
 					if Input.UserInputType == Enum.UserInputType.MouseButton1 or Input.UserInputType == Enum.UserInputType.Touch then 
+local SoundService = game:GetService("SoundService")
+local sound = Instance.new("Sound", SoundService)
+sound.SoundId = "rbxassetid://6895079853"
+sound.Volume = 1
+sound:Play()
+game:GetService("Debris"):AddItem(sound, 3)
 
 						Dragging = true 
 
@@ -2566,12 +2617,26 @@ startSound:Play()
 
 
 						AddConnection(OptionBtn.MouseButton1Click, function()
+local SoundService = game:GetService("SoundService")
+local sound = Instance.new("Sound", SoundService)
+sound.SoundId = "rbxassetid://6895079853"
+sound.Volume = 1
+sound:Play()
+game:GetService("Debris"):AddItem(sound, 3)
 
 							Dropdown:Set(Option)
 
 							SaveCfg(game.GameId)
 
 						end)
+AddConnection(OptionBtn.MouseButton1Down, function()
+local SoundService = game:GetService("SoundService")
+local sound = Instance.new("Sound", SoundService)
+sound.SoundId = "rbxassetid://6895079853"
+sound.Volume = 1
+sound:Play()
+game:GetService("Debris"):AddItem(sound, 3)
+end)
 
 
 
@@ -2672,6 +2737,14 @@ startSound:Play()
 					end
 
 				end)
+AddConnection(Click.MouseButton1Down, function()
+local SoundService = game:GetService("SoundService")
+local sound = Instance.new("Sound", SoundService)
+sound.SoundId = "rbxassetid://6895079853"
+sound.Volume = 1
+sound:Play()
+game:GetService("Debris"):AddItem(sound, 3)
+end)
 
 
 
@@ -2908,6 +2981,12 @@ startSound:Play()
 				AddConnection(Click.MouseButton1Down, function()
 
 					TweenService:Create(BindFrame, TweenInfo.new(0.25, Enum.EasingStyle.Quint, Enum.EasingDirection.Out), {BackgroundTransparency = 0.05}):Play()
+local SoundService = game:GetService("SoundService")
+local sound = Instance.new("Sound", SoundService)
+sound.SoundId = "rbxassetid://6895079853"
+sound.Volume = 1
+sound:Play()
+game:GetService("Debris"):AddItem(sound, 3)
 
 				end)
 
@@ -3096,6 +3175,12 @@ startSound:Play()
 				AddConnection(Click.MouseButton1Down, function()
 
 					TweenService:Create(TextboxFrame, TweenInfo.new(0.25, Enum.EasingStyle.Quint, Enum.EasingDirection.Out), {BackgroundTransparency = 0.05}):Play()
+local SoundService = game:GetService("SoundService")
+local sound = Instance.new("Sound", SoundService)
+sound.SoundId = "rbxassetid://6895079853"
+sound.Volume = 1
+sound:Play()
+game:GetService("Debris"):AddItem(sound, 3)
 
 				end)
 
@@ -3332,6 +3417,14 @@ startSound:Play()
 					ColorpickerFrame.F.Line.Visible = Colorpicker.Toggled
 
 				end)
+AddConnection(Click.MouseButton1Down, function()
+local SoundService = game:GetService("SoundService")
+local sound = Instance.new("Sound", SoundService)
+sound.SoundId = "rbxassetid://6895079853"
+sound.Volume = 1
+sound:Play()
+game:GetService("Debris"):AddItem(sound, 3)
+end)
 
 
 
@@ -3362,6 +3455,12 @@ startSound:Play()
 				AddConnection(Color.InputBegan, function(input)
 
 					if input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch then
+local SoundService = game:GetService("SoundService")
+local sound = Instance.new("Sound", SoundService)
+sound.SoundId = "rbxassetid://6895079853"
+sound.Volume = 1
+sound:Play()
+game:GetService("Debris"):AddItem(sound, 3)
 
 						if ColorInput then
 
@@ -3410,6 +3509,12 @@ startSound:Play()
 				AddConnection(Hue.InputBegan, function(input)
 
 					if input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch then
+local SoundService = game:GetService("SoundService")
+local sound = Instance.new("Sound", SoundService)
+sound.SoundId = "rbxassetid://6895079853"
+sound.Volume = 1
+sound:Play()
+game:GetService("Debris"):AddItem(sound, 3)
 
 						if HueInput then
 
@@ -3904,6 +4009,14 @@ function Library:MakeNotifi(Configs)
 	})
 
 	Corner(TextButton, {CornerRadius = UDim.new(0, 6)})
+AddConnection(TextButton.MouseButton1Down, function()
+local SoundService = game:GetService("SoundService")
+local sound = Instance.new("Sound", SoundService)
+sound.SoundId = "rbxassetid://6895079853"
+sound.Volume = 1
+sound:Play()
+game:GetService("Debris"):AddItem(sound, 3)
+end)
 
 
 
